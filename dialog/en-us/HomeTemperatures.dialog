@@ -1,0 +1,1 @@
+Home temperature is {{temp_int}} degrees and outside temperature is {{temp_ext}} degrees.

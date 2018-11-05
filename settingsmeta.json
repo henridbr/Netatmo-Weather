@@ -1,0 +1,48 @@
+{
+  "identifier": "NetatmoWeatherSkill",
+  "name": "Netatmo Weather Skill",
+  "skillMetadata": {
+      "sections": [
+          {
+              "name": "Your Netatmo device connection",
+              "fields": [
+                  {
+                        "type": "label",
+                        "label": "Your Netatmo device parameters :<ul><li>from <a href='https://my.netatmo.com'>my.netatmo.com</a> :</li><ul><li>your user name,</li><li>your password,</li><li> after login, check the parameters and get your device MAC address.</li></ul><li>from <a href='https://dev.netatmo.com/'>dev.netatmo.com</a>,after login, create a new app.</li><ul><li>find Client id in the parameters area,</li><li>and Client secret</li></ul></ul>"
+                  },
+                  {
+                      "name": "username",
+                      "type": "text",
+                      "label": "your Netatmo user name",
+                      "value": ""
+                  },
+                  {
+                      "name": "password",
+                      "type": "Password",
+                      "label": "your Netatmo password",
+                      "value": ""
+                  },
+                  {
+                      "name": "deviceId",
+                      "type": "text",
+                      "label": "Your Netatmo device ID",
+                      "value": ""
+                  },
+                  {
+                      "name": "clientId",
+                      "type": "text",
+                      "label": "Application client Id",
+                      "value": ""
+                  },
+                  {
+                      "name": "clientSecret",
+                      "type": "text",
+                      "label": "Application Secret key",
+                      "value": ""
+                  }
+                      
+              ]
+          }
+      ]
+  }
+}

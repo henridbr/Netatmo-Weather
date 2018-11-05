@@ -1,0 +1,2 @@
+La température intérieure est de {{temp_int}} degrés et la tendance est {{temp_trend}}.
+Il fait {{temp_int}} à l'intérieur {{temp_trend}}.

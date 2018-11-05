@@ -1,0 +1,1 @@
+Outside temperature is {{temp_ext}} degrees and its trend is {{temp_trend}}.

@@ -1,0 +1,2 @@
+La température intérieure est de {{temp_int}} degrés et la temperature extérieure est de {{temp_ext}} degrés.
+Il fait {{temp_int}} degrés à l'intérieur et {{temp_ext}} dehors.

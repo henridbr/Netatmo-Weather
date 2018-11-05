@@ -1,0 +1,1 @@
+inside room temperature is {{temp_int}} degrees and its trend is {{temp_trend}}.

@@ -1,0 +1,2 @@
+La température extérieure est de {{temp_ext}} degrés.
+Il fait {{temp_int}} dehors.
