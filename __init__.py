@@ -50,10 +50,8 @@ class NetatmoWeatherSkill(MycroftSkill):
             print(error.response.status_code, error.response.text)           
                 
 #### Read Netatmo Data         
-        params = {
-            'access_token': self.access_token,
-            'device_id': self.device_Id                  
-            }
+        params = {'access_token': self.access_token,
+                  'device_id': self.device_Id}
         try:
             response = requests.post("https://api.netatmo.com/api/getstationsdata", params=params)
             response.raise_for_status()
