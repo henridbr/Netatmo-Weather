@@ -32,6 +32,7 @@ class NetatmoWeatherSkill(MycroftSkill):
         self.client_Id = self.settings.get('clientId') 
         self.client_Secret = self.settings.get('clientSecret') 
         self.device_Id = self.settings.get('deviceId')
+        self.access_token = "0"
 
         payload = {'grant_type': "password",
                    'username': self.user_name,
