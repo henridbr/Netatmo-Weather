@@ -33,6 +33,7 @@ class NetatmoWeatherSkill(MycroftSkill):
         self.client_Secret = self.settings.get('clientSecret') 
         self.device_Id = self.settings.get('deviceId')
         self.access_token = ''
+        self.data = ''
         
 
         payload = {'grant_type': "password",
@@ -43,7 +44,7 @@ class NetatmoWeatherSkill(MycroftSkill):
                    'scope': "read_station"} 
                 
         try:
-            response = requests.post("https://api.netatmo.com/oauth2/token", "data"=payload)
+            response = requests.post("https://api.netatmo.com/oauth2/token", data=payload)
             response.raise_for_status()
             self.access_token=response.json()["access_token"]
             self.refresh_token=response.json()["refresh_token"]
