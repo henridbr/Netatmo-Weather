@@ -63,14 +63,15 @@ class NetatmoWeatherSkill(MycroftSkill):
 
         except requests.exceptions.HTTPError as error:
             print(error.response.status_code, error.response.text)
-                        
+        print(self.data)
+        
 #### Intents
 # Conversation example
 # user : netatmo
 # mycroft : gives the station name (to get the context)
 # user : home temperatures 
 # mycroft : says inside and outside temperatures
-
+'''
     @intent_handler(IntentBuilder("NetatmoIntent").require("NetatmoKeyword"))
     @adds_context('NetatmoContext','netatmo')
     def handle_netatmo_intent(self, message):             
@@ -114,6 +115,6 @@ class NetatmoWeatherSkill(MycroftSkill):
          
     def stop(self):
         pass
-
+'''
 def create_skill():
     return NetatmoWeatherSkill()
