@@ -87,8 +87,8 @@ class NetatmoWeatherSkill(MycroftSkill):
     @intent_handler(IntentBuilder("NetatmoIntent").require("NetatmoKeyword"))
     @adds_context('NetatmoContext','netatmo')
     def handle_netatmo_intent(self, message):             
-            sta_name = self.data['devices'][0]['station_name']
-            self.speak_dialog('netatmo',{"sta_name":sta_name})        
+        sta_name = self.data['devices'][0]['station_name']
+        self.speak_dialog('netatmo',{"sta_name":sta_name})        
             
     @intent_handler(IntentBuilder("HomeTemperaturesIntent").require("HomeTemperaturesKeyword").require('NetatmoContext'))
     @adds_context('NetatmoContext','netatmo') 
