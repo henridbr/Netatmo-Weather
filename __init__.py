@@ -33,7 +33,7 @@ class NetatmoWeatherSkill(MycroftSkill):
         self.client_Secret = self.settings.get('clientSecret') 
         self.device_Id = self.settings.get('deviceId')
         self.access_token = ''
-        self.data = ''
+        self.data = None
         
 
         payload = {'grant_type': "password",
@@ -53,7 +53,21 @@ class NetatmoWeatherSkill(MycroftSkill):
         except requests.exceptions.HTTPError as error:
             print(error.response.status_code, error.response.text)           
                 
-#### Read Netatmo Data         
+#### Read Netatmo Data 
+# Netatmo data structure :
+# dict 'body' : {'devices' : ... , 'status' : .... , 'time_exec' : ... , 'time_server : ... }
+# list 'devices' : [ { main_0 } , { main_1 } , ... ]
+# dict 'main_0' : { ... , 'station_name' : 'xxxxx' , ... , 'dasboard_data' : { d_data } , ... , 'modules' : ... }
+# dict 'dasboard_data' : { ... , 'Temperature' : 23 , ... , 'Pressure' : 1034 , ... }
+# 'modules' has the same structure than 'devices'
+# find station name :
+#   ['devices'][0]['station_name']
+# find Temperature (int) :
+#   ['devices'][0]['dashboard_data']['Temperature']
+# find Temperature (ext) :
+#   ['devices'][0]['modules'][0]['dashboard_data']['Temperature']
+
+
         params = {'access_token': self.access_token,
                   'device_id': self.device_Id}
         try:
