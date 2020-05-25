@@ -74,6 +74,7 @@ class NetatmoWeatherSkill(MycroftSkill):
             response.raise_for_status()
             self.data = response.json()["body"]
             sta_name = self.data['devices'][0]['station_name']
+            print = log.skills
             print(sta_name)
             
         except requests.exceptions.HTTPError as error:
