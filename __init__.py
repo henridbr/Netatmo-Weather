@@ -16,7 +16,6 @@ from mycroft import intent_handler
 from mycroft.skills.context import adds_context, removes_context
 
 import requests
-global netatmo_data
 
 __author__ = 'henridbr'
 
@@ -33,7 +32,8 @@ class NetatmoWeatherSkill(MycroftSkill):
         self.client_Id = self.settings.get('clientId') 
         self.client_Secret = self.settings.get('clientSecret') 
         self.device_Id = self.settings.get('deviceId')
-        self.access_token = ''        
+        self.access_token = '' 
+        global netatmo_data
 
         payload = {'grant_type': "password",
                    'username': self.user_name,
