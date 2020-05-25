@@ -33,7 +33,7 @@ class NetatmoWeatherSkill(MycroftSkill):
         self.client_Secret = self.settings.get('clientSecret') 
         self.device_Id = self.settings.get('deviceId')
         self.access_token = '' 
-        global netatmo_data
+        netatmo_data = {}
 
         payload = {'grant_type': "password",
                    'username': self.user_name,
@@ -86,40 +86,46 @@ class NetatmoWeatherSkill(MycroftSkill):
 
     @intent_handler(IntentBuilder("NetatmoIntent").require("NetatmoKeyword"))
     @adds_context('NetatmoContext','netatmo')
-    def handle_netatmo_intent(self, message):             
+    def handle_netatmo_intent(self, message):
+        global netatmo_data
         sta_name = netatmo_data['devices'][0]['station_name']
         self.speak_dialog('netatmo',{"sta_name":sta_name})        
             
     @intent_handler(IntentBuilder("HomeTemperaturesIntent").require("HomeTemperaturesKeyword").require('NetatmoContext'))
     @adds_context('NetatmoContext','netatmo') 
-    def handle_home_temperatures_intent(self, message):             
+    def handle_home_temperatures_intent(self, message): 
+        global netatmo_data
         temp_int = netatmo_data['devices'][0]['dashboard_data']['Temperature']
         temp_ext = netatmo_data['devices'][0]['modules'][0]['dashboard_data']['Temperature']
         self.speak_dialog('HomeTemperatures',{"temp_int":temp_int, "temp_ext":temp_ext})
    
     @intent_handler(IntentBuilder("InsideTemperatureIntent").require("InsideTemperatureKeyword").require('NetatmoContext'))
     @adds_context('NetatmoContext','netatmo')
-    def handle_inside_temperatures_intent(self, message):            
+    def handle_inside_temperatures_intent(self, message): 
+        global netatmo_data
         temp_int = netatmo_data['devices'][0]['dashboard_data']['Temperature']
         temp_trend = netatmo_data['devices'][0]['dashboard_data']['temp_trend']
         self.speak_dialog('InsideTemperature', {"temp_int": temp_int, "temp_trend": temp_trend})
 
     @intent_handler(IntentBuilder("OutsideTemperatureIntent").require("OutsideTemperatureKeyword").require('NetatmoContext'))
     @adds_context('NetatmoContext','netatmo') 
-    def handle_outside_temperature_intent(self, message):             
+    def handle_outside_temperature_intent(self, message):
+        global netatmo_data
         temp_ext = netatmo_data['devices'][0]['modules'][0]['dashboard_data']['Temperature']
         temp_trend = netatmo_data['devices'][0]['modules'][0]['dashboard_data']['temp_trend']
         self.speak_dialog('OutsideTemperature', {"temp_ext": temp_ext, "temp_trend": temp_trend})       
 
     @intent_handler(IntentBuilder("HomeHumidityIntent").require("HomeHumidityKeyword").require('NetatmoContext'))
     @adds_context('NetatmoContext','netatmo') 
-    def handle_home_humidity_intent(self, message):             
+    def handle_home_humidity_intent(self, message): 
+        global netatmo_data
         hum_int = netatmo_data['devices'][0]['modules'][0]['dashboard_data']['Humidity']
         self.speak_dialog('HomeHumidity', {"hum_int": hum_int}) 
         
     @intent_handler(IntentBuilder("HomePressureIntent").require("HomePressureKeyword").require('NetatmoContext'))
     @adds_context('NetatmoContext','netatmo') 
-    def handle_home_pressure_intent(self, message):             
+    def handle_home_pressure_intent(self, message): 
+        global netatmo_data
         press_abs = netatmo_data['devices'][0]['dashboard_data']['AbsolutePressure']
         press_trend = netatmo_data['devices'][0]['dashboard_data']['pressure_trend']
         self.speak_dialog('HomePressure', {"press_abs": press_abs, "press_trend": press_trend})
