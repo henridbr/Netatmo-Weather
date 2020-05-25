@@ -16,6 +16,7 @@ from mycroft import intent_handler
 from mycroft.skills.context import adds_context, removes_context
 
 import requests
+import sys
 
 __author__ = 'henridbr'
 
