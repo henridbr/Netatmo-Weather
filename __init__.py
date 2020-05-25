@@ -34,6 +34,8 @@ class NetatmoWeatherSkill(MycroftSkill):
         self.device_Id = self.settings.get('deviceId')
         self.access_token = '' 
         self.data = {}
+        log = open("skills.log", "a")
+        sys.stdout = log
 
         payload = {'grant_type': "password",
                    'username': self.user_name,
@@ -74,7 +76,6 @@ class NetatmoWeatherSkill(MycroftSkill):
             response.raise_for_status()
             self.data = response.json()["body"]
             sta_name = self.data['devices'][0]['station_name']
-            print = log.skills
             print(sta_name)
             
         except requests.exceptions.HTTPError as error:
