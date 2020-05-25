@@ -33,7 +33,7 @@ class NetatmoWeatherSkill(MycroftSkill):
         self.client_Secret = self.settings.get('clientSecret') 
         self.device_Id = self.settings.get('deviceId')
         self.access_token = '' 
-#        self.data = {}
+        self.data = {}
 
         payload = {'grant_type': "password",
                    'username': self.user_name,
@@ -73,10 +73,12 @@ class NetatmoWeatherSkill(MycroftSkill):
             response = requests.post("https://api.netatmo.com/api/getstationsdata", params=params)
             response.raise_for_status()
             self.data = response.json()["body"]
+            sta_name = self.data['devices'][0]['station_name']
+            print(sta_name)
             
         except requests.exceptions.HTTPError as error:
             print(error.response.status_code, error.response.text)
-        
+'''        
 ####Intents
 #   Conversation example
 #   user : netatmo
@@ -127,6 +129,6 @@ class NetatmoWeatherSkill(MycroftSkill):
          
     def stop(self):
         pass
-
+'''
 def create_skill():
     return NetatmoWeatherSkill()
