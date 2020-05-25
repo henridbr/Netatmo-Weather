@@ -33,7 +33,7 @@ class NetatmoWeatherSkill(MycroftSkill):
         self.client_Secret = self.settings.get('clientSecret') 
         self.device_Id = self.settings.get('deviceId')
         self.access_token = ''
-        netatmo_data = {}
+        self.data = {}
         
 
         payload = {'grant_type': "password",
@@ -73,7 +73,7 @@ class NetatmoWeatherSkill(MycroftSkill):
         try:
             response = requests.post("https://api.netatmo.com/api/getstationsdata", params=params)
             response.raise_for_status()
-            netatmo_data = response.json()["body"]
+            self.data = response.json()["body"]
             
         except requests.exceptions.HTTPError as error:
             print(error.response.status_code, error.response.text)
@@ -88,7 +88,7 @@ class NetatmoWeatherSkill(MycroftSkill):
     @intent_handler(IntentBuilder("NetatmoIntent").require("NetatmoKeyword"))
     @adds_context('NetatmoContext','netatmo')
     def handle_netatmo_intent(self, message):             
-        sta_name = netatmo_data['devices'][0]['station_name']
+        sta_name = self.data['body']['devices'][0]['station_name']
         self.speak_dialog('netatmo',{"sta_name":sta_name})        
             
     @intent_handler(IntentBuilder("HomeTemperaturesIntent").require("HomeTemperaturesKeyword").require('NetatmoContext'))
