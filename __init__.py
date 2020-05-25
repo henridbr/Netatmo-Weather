@@ -74,7 +74,6 @@ class NetatmoWeatherSkill(MycroftSkill):
             response = requests.post("https://api.netatmo.com/api/getstationsdata", params=params)
             response.raise_for_status()
             self.data = response.json()["body"]
-            print(self.data)
             
         except requests.exceptions.HTTPError as error:
             print(error.response.status_code, error.response.text)
