@@ -78,7 +78,7 @@ class NetatmoWeatherSkill(MycroftSkill):
             
         except requests.exceptions.HTTPError as error:
             print(error.response.status_code, error.response.text)
-'''        
+        
 #### Intents
 # Conversation example
 # user : netatmo
@@ -129,6 +129,6 @@ class NetatmoWeatherSkill(MycroftSkill):
          
     def stop(self):
         pass
-'''
+
 def create_skill():
     return NetatmoWeatherSkill()
