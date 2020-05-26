@@ -85,7 +85,7 @@ class NetatmoWeatherSkill(MycroftSkill):
 #   mycroft : gives the station name (to get the context)
 #   user : home temperatures 
 #   mycroft : says inside and outside temperatures
-'''
+
     @intent_handler(IntentBuilder("NetatmoIntent").require("NetatmoKeyword"))
     @adds_context('NetatmoContext','netatmo')
     def handle_netatmo_intent(self, message):
@@ -126,7 +126,7 @@ class NetatmoWeatherSkill(MycroftSkill):
         press_trend = self.data['devices'][0]['dashboard_data']['pressure_trend']
         self.speak_dialog('HomePressure', {"press_abs": press_abs, "press_trend": press_trend})
                 
-'''         
+        
     def stop(self):
         pass
 
